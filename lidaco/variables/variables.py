@@ -50,6 +50,7 @@ class Variables:
         Creates a variable based on a standardised variable name in an nc object 
         and returns a reference to that variable.
         TODO Choice of naming conventions for variables names
+        TODO copy other properties
         """
         if(standard_name == ""):
             standard_name = name
