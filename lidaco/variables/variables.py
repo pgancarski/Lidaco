@@ -1,6 +1,9 @@
 import jsonschema
 import simplejson as json
 import datetime
+import csv
+#from StringIO import StringIO
+from io import StringIO
 
 class Variables:
     """
@@ -62,5 +65,18 @@ class Variables:
         var.comment = metadata["description"]
         #var.accuracy = metadata["accuracy"]
         #var.accuracy_info = metadata["accuracy_info"]
+        
+        ### add other, variable specific attributes
+        if metadata["netcdf"]["other"] != "":
+            ## use csv reader as it handles well quotations
+            other_args = csv.reader(StringIO(metadata["netcdf"]["other"]), delimiter=',') 
+            #print(other_args)
+            for row in other_args: 
+                for arg in row:
+                    #print(arg)
+                    key, val = arg.split('=')
+                    key = key.strip()
+                    val = val.strip().strip('"')
+                    setattr(var,key,val)
         return var
 
