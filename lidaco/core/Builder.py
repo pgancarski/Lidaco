@@ -9,7 +9,7 @@ from ..common.Utils import is_str
 from ..common.Logger import Logger
 from .ModuleLoader import ModuleLoader
 from .Config import Config
-
+from ..common.Utils import dict_merge
 
 class Builder:
     """
@@ -29,6 +29,7 @@ class Builder:
                  output_format=None,
                  input_format=None,
                  context='',
+                 config={}
                  ):
         """
         Initialization block. Loads a main config.yaml file, a reader, a writer and the remaining
@@ -51,7 +52,8 @@ class Builder:
                 'output': {}
             },
         }
-
+        dict_merge(root_configs, config)
+        
         if input_path is not None:
             root_configs['parameters']['input']['path'] = input_path
 
@@ -63,6 +65,9 @@ class Builder:
 
         self.configs = Config(import_dir_path, configs=root_configs)
 
+        #print (self.configs.configs)
+        #return None
+        
         try:
             self.input_dir_path = path.join(context, self.params('input', 'path'))
         except Exception as e:
