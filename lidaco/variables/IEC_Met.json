@@ -202,6 +202,138 @@
       "var_type": "double",
       "other": "units=\"seconds since 1970-01-01 00:00:00.00 UTC\", calendar=\"gregorian\" "
     }
+  },
+  {
+    "name": {
+      "default": "W",
+      "cf": "",
+      "open_oa": "",
+      "iec_61400-25": "W",
+      "lidaco": "",
+      "grib": "",
+      "other": [
+        "ActivePower"
+      ]
+    },
+    "description": "Potencia active del generador",
+    "units": "kW",
+    "ref": {
+      "nvs": ""
+    },
+    "netcdf": {
+      "var_type": "float",
+      "other": ""
+    }
+  },
+  {
+    "name": {
+      "default": "DmdW",
+      "cf": "",
+      "open_oa": "",
+      "iec_61400-25": "DmdW",
+      "lidaco": "",
+      "grib": "",
+      "other": [
+        "ActLimit_Power"
+      ]
+    },
+    "description": "Ajuste de generacion de enargia activa del aerogenerador",
+    "units": "kW",
+    "ref": {
+      "nvs": ""
+    },
+    "netcdf": {
+      "var_type": "float",
+      "other": ""
+    }
+  },
+  {
+    "name": {
+      "default": "PtAngValBl1",
+      "cf": "",
+      "open_oa": "",
+      "iec_61400-25": "PtAngValBl1",
+      "lidaco": "",
+      "grib": "",
+      "other": [
+        "BladeAngleA"
+      ]
+    },
+    "description": "Angulo de paso para pala 1 (referencia)",
+    "units": "degree",
+    "ref": {
+      "nvs": ""
+    },
+    "netcdf": {
+      "var_type": "float",
+      "other": ""
+    }
+  },
+  {
+    "name": {
+      "default": "Dir",
+      "cf": "",
+      "open_oa": "",
+      "iec_61400-25": "Dir",
+      "lidaco": "",
+      "grib": "",
+      "other": [
+        "NacelleDirection"
+      ]
+    },
+    "description": "Nacelle orientation",
+    "units": "degree",
+    "ref": {
+      "nvs": ""
+    },
+    "netcdf": {
+      "var_type": "float",
+      "other": ""
+    }
+  },
+  {
+    "name": {
+      "default": "TurSt",
+      "cf": "",
+      "open_oa": "",
+      "iec_61400-25": "TurSt",
+      "lidaco": "",
+      "grib": "",
+      "other": [
+        "OperationState"
+      ]
+    },
+    "description": "Estado del aerogenerador; State of the WTG. States 0, 3 and 9 are most common. 0 = WTG connected to grid, 1= Waiting for grid, 2=Ready for production, 3=Waiting on wind, 4=Pitch lubrication, 5=Cable untwisting, 6=Too high wind, 7=Grid error, 8=Internal error - Autoreset, 9=Internal error - Manual reset, 10=Stop Command, 11=Remote Stop",
+    "units": "",
+    "ref": {
+      "nvs": ""
+    },
+    "netcdf": {
+      "var_type": "int",
+      "other": ""
+    }
+  },
+  {
+    "name": {
+      "default": "RotSpd",
+      "cf": "",
+      "open_oa": "",
+      "iec_61400-25": "RotSpd",
+      "lidaco": "",
+      "grib": "",
+      "other": [
+        "OperationState"
+      ]
+    },
+    "description": "Valor de la velocidad del rotor en el lado del rotor",
+    "units": "Hz",
+    "ref": {
+      "nvs": ""
+    },
+    "netcdf": {
+      "var_type": "float",
+      "other": ""
+    }
   }
 ]
 

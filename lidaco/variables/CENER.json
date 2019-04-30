@@ -98,6 +98,66 @@
       "var_type": "float",
       "other": ""
     }
+  },
+  {
+    "name": {
+      "default": "id",
+      "cf": "",
+      "open_oa": "",
+      "iec_61400-25": "",
+      "lidaco": "",
+      "grib": "",
+      "other": []
+    },
+    "description": "Unique ID of a sensor. A \"sensor\" is any data source",
+    "units": "",
+    "ref": {
+      "nvs": ""
+    },
+    "netcdf": {
+      "var_type": "str",
+      "other": ""
+    }
+  },
+  {
+    "name": {
+      "default": "long_name",
+      "cf": "",
+      "open_oa": "",
+      "iec_61400-25": "",
+      "lidaco": "",
+      "grib": "",
+      "other": []
+    },
+    "description": "Long name of the data source.",
+    "units": "",
+    "ref": {
+      "nvs": ""
+    },
+    "netcdf": {
+      "var_type": "str",
+      "other": ""
+    }
+  },
+  {
+    "name": {
+      "default": "type",
+      "cf": "",
+      "open_oa": "",
+      "iec_61400-25": "",
+      "lidaco": "",
+      "grib": "",
+      "other": []
+    },
+    "description": "Type of a data source. For example turbine, mast, sonic... TODO - define taxonomy",
+    "units": "",
+    "ref": {
+      "nvs": ""
+    },
+    "netcdf": {
+      "var_type": "str",
+      "other": ""
+    }
   }
 ]
 
