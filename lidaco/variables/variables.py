@@ -1,17 +1,22 @@
 import jsonschema
 import simplejson as json
-import datetime
+#import datetime
 import csv
+import os
 #from StringIO import StringIO
 from io import StringIO
+from sys import exit
 
 class Variables:
     """
     Database of variables and related metadata
     """
     def __init__(self):
+        path = os.path.abspath(__file__) # i.e. /path/to/dir/foobar.py
+        self.dictionaries_path = os.path.split(path)[0] #i.e. /path/to/dir/
+        
         ## Read the schema file 
-        with open('./lidaco/variables/schema.json', 'r') as f:
+        with open(os.path.join(self.dictionaries_path,'schema.json'), 'r') as f:
             schema_file = f.read()
         schema = json.loads(schema_file)
 
@@ -20,7 +25,7 @@ class Variables:
 
         for file_name in dictionaries:
             ## Read variables definitions
-            with open('./lidaco/variables/' + file_name, 'r') as f:
+            with open(os.path.join(self.dictionaries_path,file_name), 'r') as f:
                 json_file = f.read()
             variables_json_obj = json.loads(json_file)
             
