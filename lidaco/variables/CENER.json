@@ -1,6 +1,27 @@
 [
   {
     "name": {
+      "default": "undefined",
+      "cf": "",
+      "open_oa": "",
+      "iec_61400-25": "",
+      "lidaco": "",
+      "grib": "",
+      "other": []
+    },
+    "description": "Check documentation, or contact the data owners for detailed meaning of this variable. Feal free to criticize the authors for not properly documenting their data.",
+    "units": "",
+    "ref": {
+      "nvs": ""
+    },
+    "netcdf": {
+      "var_type": "float",
+      "other": ""
+    }
+  },
+
+  {
+    "name": {
       "default": "northward_wind",
       "cf": "northward_wind",
       "open_oa": "",

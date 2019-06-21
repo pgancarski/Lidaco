@@ -34,7 +34,6 @@ class Variables:
 
             # Add to the global dictionary
             self.dictionary = self.dictionary + variables_json_obj
-
     def lookup(self, variable_name):
         """
         Finds a variable metadata based on its standardised name
@@ -47,10 +46,11 @@ class Variables:
                 break
         
         if (len(res) == 0):
-            print("ERROR: Unrecognised variable name " + variable_name)
-            print("If using for the first time, then you should add the metadata of the variable to an appropriate .json file in the lidaco/variables folder")
-            print("Exiting")
-            exit()     
+            print("WARNING: Unrecognised variable name " + variable_name)
+            print("If using for the first time, then you should add the metadata of the variable to an appropriate .json file in the lidaco/variables folder.")
+            print("It is YOUR responsibility to do that.")
+            res = self.lookup("undefined")
+            res['name']['default'] == variable_name
         return res
 
     def nc_create(self, output_dataset, name, dimensions, standard_name = ""):
