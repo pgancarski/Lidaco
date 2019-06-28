@@ -1,0 +1,16 @@
+imports: # read in order
+  - ./configs/project_info.yaml
+ 
+parameters:
+  ### read_csv settings
+  header    : 0
+  skip_rows : 0
+  delimeter : ','
+  
+
+  input:
+    path: ./Data/20hz
+    format: CSV_timeseries
+
+  output:
+    format: NetCDF4

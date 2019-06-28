@@ -27,28 +27,6 @@ class CSV_timeseries(Reader):
         
         self._var_dict = variables.Variables()
         self._time_sort_map = None
-    
-#    def roedsand_time_series(self, name_from, apply_options):
-#        time_data = np.array(self.wind_file_data.apply(
-#                    lambda x: self.create_time(x['Name'], x['scan_id']), 
-#                    axis=1))
-#        # If time dimension is not sorted, make sure to create sorting map
-#        self._time_sort_map = time_data.argsort()
-#        
-#        return time_data
-    
-    
-    #    def create_time(self, Name, scan_id):
-#        year    = int(str(Name)[0:4])
-#        month   = int(str(Name)[4:6])
-#        day     = int(str(Name)[6:8])
-#        hours   = int(str(Name)[8:10])
-#        minutes = int(str(Name)[10:12]) 
-#        dt = datetime.datetime(year, month, day, hours, minutes)
-#        
-#        seconds_since = (dt - datetime.datetime(1970,1,1)).total_seconds()
-#
-#        return seconds_since + 0.05 * scan_id ## + 23.20 Why the offset here?
         
     def celsius_to_kelvin(self, name_from, apply_options):
         return np.array(self.wind_file_data.apply(
@@ -83,40 +61,32 @@ class CSV_timeseries(Reader):
             
         return self._parameters['parameters']['variables'][var_id].get(par_name,default)     
     def get_variable_data(self, var_name):
-        res = np.empty((self.n_sensors,self.n_time))
+        res = np.empty((self.n_positions,self.n_time))
         res[:] = np.nan
-        for i_sensor in range(self.n_sensors):
-            sensor_data = self._parameters['parameters']['sensors'][i_sensor]
+        for i_position in range(self.n_positions):
+            position_data = self._parameters['parameters']['positions'][i_position]
             
-            for variable in sensor_data['variables']:
+            for variable in position_data['variables']:
                 if variable['name_to'] == var_name:
-                    name_from = variable['name_from']
-                    res[i_sensor] = np.array(self.wind_file_data[name_from])
-
-### TODO add apply option         
-#        # is there a funtion to apply to the data?
-#        f_name = self.get_var_parameter(var_id,'apply')
-#        if(f_name != None):
-#            # fetch the funtion to apply to the data
-#            f = getattr(self, f_name)
-#            apply_options = self.get_var_parameter(var_id,'apply_options')
-#            
-#            # pass the data through the funtion
-#            res = f(name_from,apply_options)
-#        else:
-#            # simply pass the data from the specified column
-#            res = np.array(self.wind_file_data[name_from])
-#                    
+                    f = variable['apply']
+                    if(f != None):
+                        res[i_position] = np.array(self.wind_file_data.apply(
+                            lambda x: f(x,variable), 
+                            axis=1)) 
+                    #else, copy directly
+                    else:
+                        name_from = variable['name_from']
+                        res[i_position] = np.array(self.wind_file_data[name_from])
         # if necessarry, sort the results by time dimension
         if self._time_sort_map is not None:
-            for i_sensor in range(self.n_sensors):
-                res[i_sensor] = res[i_sensor][self._time_sort_map]            
+            for i_position in range(self.n_positions):
+                res[i_position] = res[i_position][self._time_sort_map]            
 
         return res
     def get_variables_list(self):
         variables = set()
-        for sensor_data in self._parameters['parameters']['sensors']:
-            for variable in sensor_data['variables']:
+        for position_data in self._parameters['parameters']['positions']:
+            for variable in position_data['variables']:
                 variables.add(variable['name_to'])
         return variables
         
@@ -158,25 +128,25 @@ class CSV_timeseries(Reader):
         var[:] = time_data
 
         
-    def create_sensor_variable(self,name_to):
+    def create_position_variable(self,name_to):
         name_from = name_to
-        var = self._var_dict.nc_create(self._output_dataset,name_to,('sensor',))
-        for i in range(len(self._parameters['parameters']['sensors'])):
+        var = self._var_dict.nc_create(self._output_dataset,name_to,('position',))
+        for i in range(len(self._parameters['parameters']['positions'])):
             ### TODO add apply option  
-            var[i] = self._parameters['parameters']['sensors'][i][name_from]
+            var[i] = self._parameters['parameters']['positions'][i][name_from]
 
-    def create_sensors(self):
+    def create_positions(self):
         # create dimension
-        self.n_sensors = len(self._parameters['parameters']['sensors'])
-        self._output_dataset.createDimension('sensor',self.n_sensors)
+        self.n_positions = len(self._parameters['parameters']['positions'])
+        self._output_dataset.createDimension('position',self.n_positions)
         
         ### create variables
-        self.create_sensor_variable('id')
-        self.create_sensor_variable('type')
-        self.create_sensor_variable('long_name')
-        self.create_sensor_variable('latitude')
-        self.create_sensor_variable('longitude')
-        self.create_sensor_variable('altitude')
+        self.create_position_variable('id')
+        self.create_position_variable('type')
+        self.create_position_variable('long_name')
+        self.create_position_variable('latitude')
+        self.create_position_variable('longitude')
+        self.create_position_variable('altitude')
     
     def create_variable(self, variable_name):
         # precompute the variable
@@ -185,7 +155,7 @@ class CSV_timeseries(Reader):
         var = self._var_dict.nc_create(
                     self._output_dataset, 
                     variable_name,
-                    ('sensor','time'))
+                    ('position','time'))
         # assign the values
         var[:] = var_data
         return var
@@ -229,8 +199,8 @@ class CSV_timeseries(Reader):
         
         ### create time dimension
         self.create_time()
-        ### create sensor dimension and metadata
-        self.create_sensors()
+        ### create position dimension and metadata
+        self.create_positions()
         
         ### create timeseries data
         self.create_timeseries()

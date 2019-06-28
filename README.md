@@ -33,5 +33,5 @@ Widaco uses a variables dictionary to support different naming convention, provi
 
 ## Output files structure
 
-The outputs are structured as a 3D arrays of timeseries, "sensor", and variables.
-Sensor can stand for anything that is defined by its position and type.
+The outputs are structured as a 3D arrays of timeseries, "position", and variables.
+Position can stand for anything that is defined by its position and type, usally it stands for a wind turbine or a specific altitude of a met mast.

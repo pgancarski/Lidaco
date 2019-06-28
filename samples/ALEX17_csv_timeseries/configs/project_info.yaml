@@ -1,0 +1,16 @@
+attributes:
+
+  # general data set description
+  conventions     : 'CENER'
+  version         : '1.0'
+  title           : ''
+  creator         : ''
+  references      : ''
+  site            : 'Alaiz'
+  general_comment : ''
+  institution     : 'DTU,CENER'
+
+  # data description
+  data_processing_history: ''
+
+
