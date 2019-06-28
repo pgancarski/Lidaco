@@ -2,17 +2,12 @@
 
 # Widaco 
 
-Widaco (Wind **Li**dar **Da**ta **Co**nverter) is a data converter build on top of Lidaco library (Wind **Li**dar **Da**ta **Co**nverter) https://github.com/e-WindLidar/Lidaco . 
+Widaco (**Wi**nd **Da**ta **Co**nverter) is a data converter build on top of the Lidaco library (Wind **Li**dar **Da**ta **Co**nverter) https://github.com/e-WindLidar/Lidaco . 
 
-
-
-## Installation
-
-Check https://github.com/e-WindLidar/Lidaco for deatails on how to start using the converter library
 
 ## Getting started - WORK IN PROGRESS
-
-
+Download the repository, and try running the ALEX17 example samples/ALEX17_csv_timeseries/run.ipynb
+Install any missing dependencies.
 
 ## Inputs
 
