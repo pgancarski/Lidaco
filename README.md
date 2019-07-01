@@ -1,8 +1,8 @@
 [![PyPI version](https://badge.fury.io/py/lidaco.svg)](https://badge.fury.io/py/lidaco)
 
-# Widaco 
+# Windaco 
 
-Widaco (**Wi**nd **Da**ta **Co**nverter) is a data converter build on top of the Lidaco library (Wind **Li**dar **Da**ta **Co**nverter) https://github.com/e-WindLidar/Lidaco . 
+Windaco (**Win**d **Da**ta **Co**nverter) is a data converter build on top of the Lidaco library (Wind **Li**dar **Da**ta **Co**nverter) https://github.com/e-WindLidar/Lidaco . 
 
 
 ## Getting started - WORK IN PROGRESS
