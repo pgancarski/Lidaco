@@ -215,7 +215,7 @@
         "ActivePower"
       ]
     },
-    "description": "Potencia active del generador",
+    "description": "Potencia active del generador. Generación de potencia activa.",
     "units": "kW",
     "ref": {
       "nvs": ""
