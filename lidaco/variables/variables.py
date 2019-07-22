@@ -64,7 +64,7 @@ class Variables:
             standard_name = name
 
         metadata = self.lookup(name)
-        var = output_dataset.createVariable(standard_name, metadata["netcdf"]["var_type"], dimensions,,zlib=True)
+        var = output_dataset.createVariable(standard_name, metadata["netcdf"]["var_type"], dimensions,zlib=True)
         var.units = metadata["units"]
         var.long_name = metadata["name"]["default"]
         var.comment = metadata["description"]
